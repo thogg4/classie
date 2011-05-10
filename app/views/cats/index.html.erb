@@ -1,0 +1,19 @@
+<% title "Cats" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Show</th>
+  </tr>
+  <% for cat in @cats %>
+    <tr>
+      <td><%=h cat.name %></td>
+      <td><%=h cat.show %></td>
+      <td><%= link_to "Show", cat %></td>
+      <td><%= link_to "Edit", edit_cat_path(cat) %></td>
+      <td><%= link_to "Destroy", cat, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Cat", new_cat_path %></p>

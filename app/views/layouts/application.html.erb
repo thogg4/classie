@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><%= h(yield(:title) || "Untitled") %></title>
+		<%= javascript_include_tag "jquery", "jquery_ui", "validate", "facebook", "application" %>
+		<%= stylesheet_link_tag "grid", "application" %>
+		<%= yield(:head) %>
+	</head>
+	<body>
+		
+	<%- flash.each do |name, msg| -%>
+		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<%- end -%>
+
+	<div id="header" style="margin-bottom: 10px">
+		<% if logged_in? %>
+			<% if current_user.login == "thogg4"%>
+				<li><%= link_to "Admin", admin_path, :style => "color: #CCCCCC;" %></li>
+				<% end %>
+		<% end %>
+		<ol id="menu">
+			<% if logged_in? %>
+				<li><%= link_to "Sign Out", logout_path %></li>
+			<% else %>
+				<li><%= link_to "Sign In", login_path %></li>
+				<li><%= link_to "Sign Up", signup_path %></li>
+			<% end %>
+			<li><%= link_to "Browse Ads", root_path %></li>
+			<% if !logged_in? %>
+				<li><%= link_to "Place a classified Ad", new_user_ad_path(0) %></li>
+				<li><%= link_to "My Ads", username_path(0) %></li>
+			<% else %>
+				<li><%= link_to "Place a classified Ad", new_user_ad_path(current_user) %></li>
+				<li><%= link_to "My Ads", username_path(current_user) %></li>
+			<% end %>
+		</ol>
+		<div id="search_box">
+			<% form_tag search_path, :method => 'get' do %>
+			    <%= text_field_tag :search, params[:search], :id => "search_bar" %>
+			    <%= submit_tag "", :name => nil, :id => "search_image" %>
+			<% end %>
+		</div>
+		<div class="newline"></div>
+	</div>
+	
+	
+	<div class="container">			
+		<%= yield %>
+	</div>
+	
+
+	
+	<div id="fb-root"></div>
+	</body>
+</html>

@@ -1,0 +1,69 @@
+<div class="row">
+	<div class="eightcol">
+		<ol>
+
+				<% @user.password = @user.password_confirmation = nil %>
+				<%= error_messages_for :user %>
+				<% form_for [@user], :url => users_path do |f| -%>
+			<li>
+				<%= f.label :login, "Username<span class='required_star'>*</span>" %>
+				<%= f.text_field :login, :class => "required", :title => "This can't be blank!" %>
+			</li>
+			<li>
+				<%= f.label :email, "Email<span class='required_star'>*</span>" %>
+				<%= f.text_field :email, :class => "required", :title => "This can't be blank!" %>
+			</li>
+			<li>
+				<%= f.label :first_name, "First name<span class='required_star'>*</span>" %>
+				<%= f.text_field :first_name, :class => "required", :title => "This can't be blank!" %>
+			</li>
+			<li>
+				<%= f.label :last_name, "Last Name<span class='required_star'>*</span>" %>
+				<%= f.text_field :last_name, :class => "required", :title => "This can't be blank!" %>
+			</li>
+			<li>
+				<%= f.label :phone, "Phone<span class='required_star'>*</span>" %>
+				<%= f.text_field :phone, :class => "required", :title => "This can't be blank!" %>
+			</li>
+			<li>
+				<%= f.label :street, "Street<span class='required_star'>*</span>" %>
+				<%= f.text_field :street, :class => "required", :title => "This can't be blank!" %>
+			</li>
+			<li>
+				<%= f.label :city, "City<span class='required_star'>*</span>" %>
+				<%= f.text_field :city, :class => "required", :title => "This can't be blank!" %>
+			</li>
+			<li>
+		
+					<%= f.label :state, "State<span class='required_star'>*</span>" %>
+					<%= f.select :state, ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WI','WV','WY'], :include_blank => true, :class => "required", :title => "This can't be blank!" %>
+		
+			</li>
+			<li>
+				<%= f.label :zip, "Zip Code<span class='required_star'>*</span>" %>
+				<%= f.text_field :zip, :class => "required", :title => "This can't be blank!" %>
+			</li>
+			<li>
+				<%= f.label :password, "Password<span class='required_star'>*</span>" %>
+				<%= f.password_field :password, :class => "required", :title => "This can't be blank!" %>
+			</li>
+			<li>
+				<%= f.label :password_confirmation, "Confirm<span class='required_star'>*</span>" %>
+				<%= f.password_field :password_confirmation, :class => "required", :title => "This can't be blank!" %>
+			</li>
+			<li>
+				<%= submit_tag 'Sign up', :class => "button", :style => "margin-left: 97px;" %>
+				<% end -%>
+			</li>
+		</ol>
+	</div>
+	
+	<div class="fourcol last">
+	</div>
+
+</div>
+	
+
+<% title "Classifieds - Sign Up"%>
+	
+	

@@ -1,0 +1,45 @@
+<div class="row">
+	<div class="eightcol">
+		<% @ads.each do |ad| %>
+			<div class="ad">
+				<div class="container">
+					<div class="row">
+						<div class="twocol">
+							<% if ad.assets.empty? %>
+							<% else %>
+								<%= link_to image_tag(ad.assets.first.image_url, :style => "height: 75px;"), user_ad_path(ad.user_id, ad) %>
+							<% end %>
+						</div>
+						<div class="eightcol">
+							<div class="ad_title">
+								<%= link_to ad.title, user_ad_path(ad.user_id, ad) %>
+							</div>
+							<div class="ad_city">
+								<%=h ad.city %>, <%=h ad.state %>
+							</div>
+							<div class="ad_description">
+								<%=h truncate(ad.description, 170, "...") %>
+							</div>
+							<div class="ad_price">
+								$<%=h ad.price %><span style="font-size: 8px;"><%=h ad.cents %><span>
+							</div>
+						</div>
+						<div class="twocol last">
+							<div class="ad_date">
+								<%= ad.created_at.strftime("%b #{ad.created_at.day.ordinalize}, %Y") %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	
+	<div class="fourcol last">
+	</div>
+
+
+
+</div>
+
+<% title "Results - #{params[:search]}" %>

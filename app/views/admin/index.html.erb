@@ -1,0 +1,89 @@
+Create a New Main Category
+<% form_for @cat do |f| -%>
+	<ol>
+		<li>
+			<%= f.text_field :name %>
+			<span style="font-size: 12px; color: #888888; margin-left: 5px;">Admin</span>
+			<%= f.check_box :admin %>
+			<%= f.submit "Save", :class => "button" %>
+		</li>
+	</ol>
+<% end -%>
+
+<% @cats.each do |cat| %>
+	<div class="admin_main_category_wrapper" id="main_category_wrapper_<%= cat.id %>">
+	<span class="admin_main_category_title" id="<%= cat.id %>"><%= cat.name %></span>
+		<% form_for cat do |f| -%>
+			<ol>
+				<li>
+					<%= f.text_field :name %>
+					<span style="font-size: 12px; color: #888888; margin-left: 5px;">Admin</span>
+					<%= f.check_box :admin %>
+					<span style="font-size: 12px; color: #888888; margin-left: 5px;">Sort</span>
+					<%= f.text_field :position, :size => "5" %>
+					<%= link_to "Delete", cat_path(cat), :method => :delete, :class => "button" %>
+				</li>
+			</ol>
+		<% end -%>
+
+		<div class="create_sub_category">Create a new Sub Category for <%= cat.name %></div>
+		<% form_for [cat, @sub_cat] do |f| -%>
+			<ol>
+				<li>
+					<%= f.text_field :name %>
+					<span style="font-size: 12px; color: #888888; margin-left: 5px;">Admin</span>
+					<%= f.check_box :admin %>
+					<%= f.submit "Save", :class => "button" %>
+				</li>
+			</ol>
+		<% end -%>
+
+		<div class="sub_cats_list" id="sub_cats_list_<%= cat.id %>">
+			<% cat.sub_cats.find(:all, :order => "position").each do |sub_cat|%>
+				<li name="<%= cat.id %>" id="sub_cat_<%= sub_cat.id %>" value="<%= sub_cat.id %>">
+					<% form_for [cat, sub_cat] do |f| -%>
+						<ol>
+							<li>
+								<%= f.text_field :name %>
+								<span style="font-size: 12px; color: #888888; margin-left: 5px;">Admin</span>
+								<%= f.check_box :admin %>
+								<%= link_to "Delete", cat_sub_cat_path(cat, sub_cat), :method => :delete, :class => "button" %>
+							</li>
+						</ol>
+					<% end -%>
+				</li>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+<div class="newline"></div>
+<ol>
+		<li>
+			<div id="save_all_cats" class="button">Save All</div>
+			<span id="save_all_cats_loading" style="display: none; margin-left: 10px; vertical-align: bottom;"><%= image_tag "/images/load.gif" %></span>
+		</li>
+	</ol>
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+		$(".sub_cats_list").sortable({
+			opacity: "0.9",
+			update: function(event, ui){
+				var cat_id = $(ui.item).attr("name");
+				var sub_cat_id = $(ui.item).attr("value");
+				$.ajax({
+					url: "/cats/"+ cat_id +"/sub_cats/"+ sub_cat_id +"/prioritize_sub_cats",
+					type: "post",
+					dataType: "script",
+					data: $("#sub_cats_list_"+cat_id).sortable("serialize")+"&id="+cat_id,
+				});
+			},
+		});
+		
+	});
+</script>
+
+<% title "Admin" %>
