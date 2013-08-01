@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Read about fixtures at
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
@@ -10,3 +11,12 @@ two:
   name: MyString
   admin: false
   position: 1
+=======
+one:
+  name: MyString
+  show: false
+
+two:
+  name: MyString
+  show: false
+>>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed

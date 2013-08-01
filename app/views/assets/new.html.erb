@@ -1,0 +1,44 @@
+<% title "Add Photos" %>
+<div id="progress_box">
+	<div class="step filled">Create your ad</div>
+	<div class="step filled">Add Photos</div>
+	<div class="step">Terms of Use</div>
+	<div class="step">Thank You</div>
+	<div class="newline"></div>
+</div>
+
+<div class="row">
+	<div class="eightcol">
+
+
+		<div class="form_divider">Photo Upload</div>
+		<% form_for [current_user, @ad, @asset], :html => {:multipart => true} do |f| %>
+		  <%= f.error_messages %>
+		  <p>
+		    <%= f.label :image %>
+		    <%= f.file_field :image %>
+		  </p>
+		  <p><%= f.submit "Upload", :class => "button" %></p>
+		<% end %>
+		<br />
+		<br />
+		<style>
+		
+		</style>
+		<% @assets.each do |asset| %>
+			<div style="float: left;">
+				<li><a href="<%=asset.image_url%>" class="pirobox"><%= image_tag asset.image_url, :style => "height: 150px;" %></a></li>
+			</div>
+			<div class="newline"></div>
+		<% end %>
+		<br />
+		<br />
+		<br />
+		
+		<%= link_to "Click here when you are done adding photos", terms_of_use_path, :class => "button", :style => "width: 400px; font-size: 15px;" %>
+
+
+	</div>
+	<div class="fourcol last">
+	</div>
+</div>

@@ -1,0 +1,60 @@
+<% title "Edit classified ad" %>
+
+<div class="row">
+	<div class="eightcol">
+		<% form_for [current_user, @ad] do |f| %>
+		  <%= f.error_messages %>
+			<div class="form_divider">Categories</div>
+		  	
+		   	<%= f.collection_select :category, @cats, :id, :name, :prompt => "Select Main Category" %>
+			<br />
+			<select id="sub_cats_select" name="ad[sub_category]"></select>
+			<br />
+		  	Current Category: <%= @ad.sub_category %>
+			</br />
+			<div class="form_divider">Ad Information</div>
+				<ol>
+					<li>
+						<%= f.label :price %>
+						<%= f.text_field :price, :style => "width: 40px;" %><%= f.text_field :cents, :style => "width: 20px;" %><span style="font-size: 12px; color: #888888; margin-left: 5px;">Numbers only</span>
+					</li>
+					<li>
+						<%= f.label :title %>
+						<%= f.text_field :title, :size => "46" %>
+					</li>
+					<li>
+						<%= f.label :description %>
+						<%= f.text_area :description %>
+					</li>
+					<li>
+						<%= f.label :tags %>
+						<%= f.text_field :tags, :size => "46" %>
+						<div id="ad_tags_popup" style="display: none; font-size: 12px; color: #888888; margin-left: 5px;">Tag your ad to make it easy to find. Example: bike bicycle white good condition</div>
+					</li>
+					<li>
+				  		<%= f.submit "Save Changes", :class => "button", :style => "margin-left: 97px; width: 90px;" %>
+					</li>
+				</ol>
+		<% end %>
+	</div>
+	<div class="fourcol last">
+		<% form_for [current_user, @ad, @asset], :html => {:multipart => true}, :class => "yourmomma" do |f| -%>
+			Add an image to Ad
+			<%= f.file_field :image %>
+			<%= f.submit "Add", :class => "button" %>
+		<% end -%>
+		<div style="padding: 10px;"></div>
+		<% @assets.each do |asset| %>
+			<li><a onClick="window.open('/photo_viewer?image=<%=asset.image_url if asset.image?%>','photo_viewer','width=800,height=550')"><%= image_tag asset.image_url, :style => "width: 240px; cursor: pointer;" %></a></li>
+			<div style="margin-bottom: 10px;">
+				<%= link_to "Delete this photo", user_ad_asset_path(current_user, @ad, asset), :method => :delete, :confirm => "Do you really want to delete this photo?", :style => "margin-bottom: 10px;" %>
+			</div>
+		<% end %>
+		
+		
+		
+	</div>
+</div>
+
+
+

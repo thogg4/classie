@@ -1,5 +1,9 @@
 class SubCatsController < ApplicationController
   
+<<<<<<< HEAD
+=======
+  
+>>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
   def new
     @sub_cat = SubCat.new
   end
@@ -9,6 +13,10 @@ class SubCatsController < ApplicationController
     @sub_cat = @cat.sub_cats.build(params[:sub_cat])
     if @sub_cat.save
       redirect_to(admin_path)
+<<<<<<< HEAD
+=======
+    else
+>>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
     end
   end
   
@@ -19,7 +27,11 @@ class SubCatsController < ApplicationController
       sub_cat.position = params["sub_cat"].index(sub_cat.id.to_s)
       sub_cat.save
     end
+<<<<<<< HEAD
     render :nothing
+=======
+    render :nothing => true
+>>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
   end
   
   def update

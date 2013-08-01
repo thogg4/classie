@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Read about fixtures at
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
@@ -10,13 +11,23 @@ one:
   state: MyString
   sub_cat: MyString
   views: 1
+=======
+one:
+  title: MyString
+  description: MyText
+  tags: MyString
+>>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
 
 two:
   title: MyString
   description: MyText
+<<<<<<< HEAD
   user_id: 1
   price: MyString
   city: MyString
   state: MyString
   sub_cat: MyString
   views: 1
+=======
+  tags: MyString
+>>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
