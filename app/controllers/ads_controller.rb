@@ -23,13 +23,7 @@ class AdsController < ApplicationController
       @ad = Ad.new
       @cats = Cat.find(:all, :conditions => ["admin is null OR admin = ?", false])
     else
-<<<<<<< HEAD
       redirect_to login_path, notice: "Sign in to create an ad. Don't have an account? Click Sign Up to create one."
-=======
-      session[:return_to] = "new_ad"
-      redirect_to(login_path)
-      flash[:notice] = "Sign in to create an ad. Don't have an account? Click Sign Up to create one."
->>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
     end
   end
   
@@ -40,7 +34,6 @@ class AdsController < ApplicationController
     
     respond_to do |wants|
       wants.json { render :json => @subcats }
-<<<<<<< HEAD
     end    
   end
 
@@ -50,23 +43,6 @@ class AdsController < ApplicationController
       redirect_to user_path(current_user)
     else
       render :new
-=======
-    end
-
-    
-  end
-
-  def create
-    @ad = current_user.ads.build(params[:ad])
-    @ad.city = current_user.city
-    @ad.state = current_user.state
-    @ad.views = 0
-    if @ad.save
-      redirect_to(new_user_ad_asset_path(current_user, @ad))
-    else
-      flash[:error] = "Something happened and your ad was not saved. Please try again."
-      redirect_to(username_path(current_user))
->>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
     end
   end
 
@@ -77,10 +53,6 @@ class AdsController < ApplicationController
     @asset = Asset.new
   end
   
-<<<<<<< HEAD
-=======
-
->>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
   def update
     @ad = Ad.find(params[:id])
     if @ad.update_attributes(params[:ad])
@@ -102,13 +74,5 @@ class AdsController < ApplicationController
     @ad = Ad.find(params[:id])
     @ad.increment!(:views)
   end
-<<<<<<< HEAD
 
-=======
-  
-  
-  
-  
-  
->>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
 end

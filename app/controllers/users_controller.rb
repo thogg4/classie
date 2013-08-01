@@ -1,17 +1,10 @@
 class UsersController < ApplicationController
   
-<<<<<<< HEAD
-=======
-  
-
-  # render new.rhtml
->>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
   def new
     @user = User.new
   end
  
   def create
-<<<<<<< HEAD
     @user = User.new(params[:user])
     if @user.save
       auto_login(@user)
@@ -21,22 +14,6 @@ class UsersController < ApplicationController
     end
   end
   
-=======
-    logout_keeping_session!
-    @user = User.new(params[:user])
-    success = @user && @user.save
-    if success && @user.errors.empty?
-      self.current_user = @user # !! now logged in
-      redirect_to(root_path)
-      flash[:notice] = "Thanks for signing up!"
-    else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again."
-      render :action => 'new'
-    end
-  end
-  
-  
->>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
   def update
     if current_user.update_attributes(params[:user])
       current_user.ads.each do |ad|
@@ -60,13 +37,5 @@ class UsersController < ApplicationController
       flash[:notice] = "You must sign in before you can see your ads. Don't have an account? Click Sign Up to create one."
     end
   end
-<<<<<<< HEAD
 
-=======
-  
-  
-  
-  
-  
->>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
 end

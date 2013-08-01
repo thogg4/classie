@@ -1,8 +1,5 @@
 class CatsController < ApplicationController
-<<<<<<< HEAD
-  
-=======
->>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
+
   def index
     @cats = Cat.all
   end
@@ -37,8 +34,5 @@ class CatsController < ApplicationController
     flash[:notice] = "Successfully destroyed cat."
     redirect_to(admin_path)
   end
-<<<<<<< HEAD
 
-=======
->>>>>>> d4a4f1bcc942c20df1b86ac333158c9e7d25fbed
 end
