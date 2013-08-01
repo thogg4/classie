@@ -1,0 +1,14 @@
+.row-fluid
+  .span4.offset4
+    .page-header
+      h1 Create an Ad
+
+.row-fluid
+  .span4.offset4
+    = simple_form_for [current_user, @ad], defaults: { input_html: { class: 'span12' } } do |f|
+      = f.input :title
+      = f.input :description
+      = f.input :sub_cat
+
+      .form-actions
+        = f.button :submit, value: 'Create Ad', class: 'btn btn-primary'

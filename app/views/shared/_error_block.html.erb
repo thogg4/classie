@@ -1,0 +1,7 @@
+<% if resource.errors.any? %>
+  <div class='alert'>
+    <% resource.errors.messages.values.flatten.each do |msg| %>
+      <div class=''><%= msg %></div>
+    <% end %>
+  </div>
+<% end %>

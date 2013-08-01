@@ -1,0 +1,12 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  admin: false
+  position: 1
+
+two:
+  name: MyString
+  admin: false
+  position: 1

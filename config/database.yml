@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: classie_dev
+
+test:
+  adapter: postgresql
+  database: classie_test

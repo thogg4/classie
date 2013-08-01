@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    title Classie
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  body
+    .navbar.navbar-static-top.navbar-inverse
+      .navbar-inner
+        .container-fluid
+          a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
+            span class="icon-bar"
+            span class="icon-bar"
+            span class="icon-bar"
+
+          a.brand href='/' Classie
+
+          - if current_user
+            .nav-collapse.collapse
+              ul.nav
+            .nav-collapse.collapse
+              ul.nav.pull-right
+                li: a.btn.btn-success.btn-small href=new_user_ad_path(current_user) Create Ad
+                li: a href=user_path(current_user) My Ads
+                li: a href=signout_path Sign Out
+          - else
+            .nav-collapse.collapse
+              ul.nav.pull-right
+                li: a href=signin_path Sign In
+                li: a href=new_user_path Sign Up
+
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: "flash alert alert-#{name}"
+
+    .container-fluid
+      == yield

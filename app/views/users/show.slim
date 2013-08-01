@@ -1,0 +1,9 @@
+.row-fluid
+  .span4.offset4
+    .page-header
+      h1 My Ads
+
+.row-fluid
+  .span4.offset4
+    - @ads.each do |a|
+      = render partial: 'ads/ad_summary', locals: { a: a }

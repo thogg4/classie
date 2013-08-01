@@ -1,0 +1,88 @@
+// variables have to be set before importing bootstrap
+// set variables here
+
+// set the correct sprite paths
+$iconSpritePath: image-path('glyphicons-halflings.png');
+$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
+
+$navbarBackground: #555;
+$navbarBackgroundHighlight: #888;
+$navbarText: #eee;
+$navbarLinkColor: #eee;
+
+
+// now import
+@import 'twitter/bootstrap';
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Exo', sans-serif;
+    font-weight:400;
+}
+.navbar-inverse .navbar-inner {
+    padding-top: 0px;
+    background-image: url(<%= asset_path('debut_dark.png') %>);
+    background-repeat: repeat;
+    background-color:#333;
+}
+.navbar .brand {
+    font-family: 'Exo', sans-serif;
+    font-size:30px;
+    font-size: 28px;
+    font-weight: 400;
+    color: #eee;
+    text-shadow: 0 2px 0 #000;
+}
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+    color: #eee;
+    text-decoration: none;
+    background-color: #222;
+    margin-top:-10px;
+    padding-top:20px;
+    padding-bottom:18px;
+    -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+    -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+}
+.navbar .nav > li > a {
+    float: none;
+    font-size:16px;
+    padding: 10px 15px 10px;
+    color: #eee;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #000;
+}
+.navbar .nav > li > a:hover {
+    color:#0088cc;
+}
+.navbar .nav a.btn {
+  padding: 4px 12px;
+  margin: 5px 8px;
+}
+.navbar .nav a.btn:hover {
+  color: #FFFFFF;
+  background-position: 0px;
+}
+.navbar .nav a.btn:active {
+  background-image: -moz-linear-gradient(top, #62c462, #51a351);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+  background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+  background-image: -o-linear-gradient(top, #62c462, #51a351);
+  background-image: linear-gradient(to bottom, #62c462, #51a351);
+}
+.collapse {
+    background-color: transparent;
+}
+@media (max-width: 979px) {
+.nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus {
+    background-color: #000;
+    color:#fff;
+    }
+}
+.well {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    background: -webkit-linear-gradient(top, #ffffff, #f9f9f9);
+    background: -moz-linear-gradient(top, #ffffff, #f9f9f9);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
