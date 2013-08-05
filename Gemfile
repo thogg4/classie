@@ -32,6 +32,7 @@ gem 'simple_form'
 
 # file uploading
 gem 'paperclip'
+gem 'fog'
 
 # environment variables
 gem 'figaro'

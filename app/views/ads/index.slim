@@ -1,2 +1,5 @@
-- @ads.each do |ad|
-  = ad.title
+- @ads.each_slice(3) do |slice|
+  .row
+    - slice.each do |ad|
+      .col-lg-4
+        = render partial: 'ads/ad', locals: { ad: ad }

@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  before_filter :require_login, only: [:edit, :update, :show]
+
+  def show
+    @ads = @user.ads
+  end
   
   def new
     @user = User.new
@@ -12,6 +17,9 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
   end
   
   def update
@@ -28,14 +36,4 @@ class UsersController < ApplicationController
     redirect_to(username_path(current_user))
   end
   
-  def show
-    if logged_in?
-      @ads = current_user.ads
-    else
-      session[:return_to] = "my_ads"
-      redirect_to(login_path)
-      flash[:notice] = "You must sign in before you can see your ads. Don't have an account? Click Sign Up to create one."
-    end
-  end
-
 end

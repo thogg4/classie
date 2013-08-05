@@ -1,19 +1,22 @@
-.row-fluid
-  .span4.offset4
-    .page-header
-      h1 Create account
-
-.row-fluid
-  .span4.offset4
-    = simple_form_for @user, defaults: { input_html: { class: 'span12' } } do |f|
-      = f.input :email
-      = f.input :password
-      = f.input :first_name
-      = f.input :last_name
-      = f.input :city
-      = f.input :state
-      = f.input :zip
-      = f.input :phone
+.row
+  .col-lg-4.col-offset-4
+    = simple_form_for @user, defaults: { input_html: { class: 'form-control' } } do |f|
+      .form-group
+        = f.input :email
+      - if @user.new_record?
+        .form-group
+          = f.input :password
+      .form-group
+        = f.input :first_name
+      .form-group
+        = f.input :last_name
+      .form-group
+        = f.input :city
+      .form-group
+        = f.input :state
+      .form-group
+        = f.input :zip
+      .form-group
+        = f.input :phone
       
-      .form-actions
-        = f.button :submit, class: 'btn btn-primary'
+      = f.button :submit, class: 'btn btn-primary'

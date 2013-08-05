@@ -12,7 +12,7 @@ class CatsController < ApplicationController
     @cat = Cat.new(params[:cat])
     if @cat.save
       flash[:notice] = "Successfully created cat."
-      redirect_to(admin_path)
+      redirect_to admin_path
     else
       render :action => 'new'
     end

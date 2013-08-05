@@ -1,11 +1,12 @@
-.row-fluid
-  .span4.offset4
+.row
+  .col-lg-4.col-offset-4
     = form_tag sessions_path do |f|
-      label Email
-      = text_field_tag :email, nil, placeholder: "Email", class: 'span12'
+      .form-group
+        label Email
+        = text_field_tag :email, nil, placeholder: "Email", class: 'form-control'
 
-      label Password
-      = password_field_tag :password, nil, placeholder: "Password", class: 'span12'
+      .form-group
+        label Password
+        = password_field_tag :password, nil, placeholder: "Password", class: 'form-control'
 
-      .form-actions
-        = submit_tag "Sign In", class: "btn btn-primary"
+      = submit_tag "Sign In", class: "btn btn-primary"

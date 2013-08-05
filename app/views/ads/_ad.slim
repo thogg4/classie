@@ -1,0 +1,7 @@
+.ad
+  = link_to ad_path(ad) do
+    = image_tag ad.image.url(:thumb)
+
+    h4.date = ad.created_at.strftime('%b %d, %Y')
+    h3.title = "$#{ad.price} - #{ad.title}"
+    .description = truncate(ad.description, length: 100)

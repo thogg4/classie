@@ -6,33 +6,43 @@ html
     = javascript_include_tag "application"
     = csrf_meta_tags
 
+  javascript:
+    WebFontConfig = {
+      google: { families: [ 'Nixie+One::latin', 'PT+Sans::latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+
   body
-    .navbar.navbar-static-top.navbar-inverse
-      .navbar-inner
-        .container-fluid
-          a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
-            span class="icon-bar"
-            span class="icon-bar"
-            span class="icon-bar"
 
-          a.brand href='/' Classie
+    .header-container
+      .container
+        .row
+          .col-lg-6
+            a.logo href='/' Cyclelist
 
-          - if current_user
-            .nav-collapse.collapse
-              ul.nav
-            .nav-collapse.collapse
-              ul.nav.pull-right
-                li: a.btn.btn-success.btn-small href=new_user_ad_path(current_user) Create Ad
+          .col-lg-6
+            ul.menu.nav.nav-pills
+              li: a href=new_ad_path Place an Ad
+              - if current_user
                 li: a href=user_path(current_user) My Ads
+                li: a href=edit_user_path(current_user) Edit Account
                 li: a href=signout_path Sign Out
-          - else
-            .nav-collapse.collapse
-              ul.nav.pull-right
+                - if current_user.admin?
+                  li: a href=admin_path Admin
+              - else
                 li: a href=signin_path Sign In
                 li: a href=new_user_path Sign Up
 
     - flash.each do |name, msg|
       = content_tag :div, msg, class: "flash alert alert-#{name}"
 
-    .container-fluid
+    .container.content-container
       == yield
